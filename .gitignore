@@ -1,0 +1,25 @@
+# Python cache/build artifacts
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+nenv/
+venv/
+env/
+
+# LaTeX
+reports/
+
+# Editor
+.vscode/
+.streamlit/

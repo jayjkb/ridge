@@ -1,0 +1,81 @@
+{
+  "artifact_type": "ridge.stage1_generation_profile",
+  "schema_version": 2,
+  "status": "resolved_full_generation_profile",
+  "purpose": "Resolved launch profile for the 4,000-episode Stage 1 dataset",
+  "composition": {
+    "run_count": 4000,
+    "healthy": 2000,
+    "drain": 500,
+    "fiber_cut": 500,
+    "link_degradation": 500,
+    "link_flap": 500
+  },
+  "host_execution": {
+    "workers": 14,
+    "cpu_affinity": "0-13",
+    "reserved_cpus": [14, 15],
+    "python": "3.12.3",
+    "pytorch": "2.11.0+cu128",
+    "cuda_build": "12.8"
+  },
+  "resolved_config": {
+    "runs": 4000,
+    "workers": 14,
+    "duration_sec": 180,
+    "interval_sec": 2,
+    "burst_mean_gap_sec": 2.5,
+    "routing_mode": "frr_ospf",
+    "enable_static_arp": false,
+    "traffic_flow_min": 20,
+    "traffic_flow_max": 24,
+    "ping_pair_min": 4,
+    "ping_pair_max": 6,
+    "probe_mode": "async",
+    "probe_packets": 1,
+    "probe_timeout_sec": 1.0,
+    "probe_cadence_sec": 1.0,
+    "probe_result_freshness_sec": 4.0,
+    "probe_coverage_policy": "representative_cross_site",
+    "warmup_sec_default": 60,
+    "warmup_sec_sampled_min": 50,
+    "warmup_sec_sampled_max": 80,
+    "fault_start_offset_min_sec": 35,
+    "fault_start_offset_max_sec": 70,
+    "fault_start_offset_sec_fallback": 0,
+    "fault_duration_min_sec": 25,
+    "fault_duration_max_sec": 45,
+    "fault_duration_sec_fallback": 60,
+    "min_training_runs": 0,
+    "fault_fraction": 0.5,
+    "fault_category_selection": "mixed",
+    "seed": 42,
+    "drain_ramp_steps": 5,
+    "drain_phase_ratios": {
+      "ramp_down": 0.25,
+      "link_down": 0.15,
+      "hold_down": 0.2,
+      "ramp_up": 0.4
+    },
+    "scheduling_policy": {
+      "clock": "monotonic_fixed_rate",
+      "telemetry_policy_id": "monotonic_fixed_rate_fault_guard_v4",
+      "probe_policy_id": "async_fixed_rate_prewarmed_v2",
+      "telemetry_cycles_overlap": false,
+      "missed_deadline_policy": "record_and_skip",
+      "fault_actions_priority": "between_atomic_telemetry_cycles",
+      "telemetry_blocking_budget_sec": 1.0,
+      "fault_guard_sec": 0.5,
+      "probe_prewarm": true,
+      "probe_inflight_limit": "one_per_source_namespace"
+    },
+    "simulation_scope": "l3_only",
+    "ditg_binary_packet_logging": false
+  },
+  "rolling_gate": {
+    "first_completed_episode": 100,
+    "subsequent_interval_episodes": 250,
+    "stop_launching_on_failure": true,
+    "allow_active_episodes_to_finish": true
+  }
+}
